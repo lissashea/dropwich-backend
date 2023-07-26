@@ -1,10 +1,9 @@
-
+// src/routes/orders.js
 import express from 'express';
+import User from '../models/UserModel.js'; // Add .js file extension
 import Order from '../models/OrderModel.js'; // Add .js file extension
 
-
 const router = express.Router();
-
 
 // GET all orders
 router.get("/", async (req, res) => {
