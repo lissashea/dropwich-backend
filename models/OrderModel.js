@@ -1,11 +1,11 @@
-// src/models/Order.js
 
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const orderSchema = new mongoose.Schema({
+let Order = new Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the User model for linking orders to users
+    type: Schema.Types.ObjectId,
+    ref: "users", // Reference to the User model for linking orders to users
     required: true,
   },
   sandwich: {
@@ -33,6 +33,4 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const Order = mongoose.model("Order", orderSchema);
-
-export default Order;
+export default mongoose.model("orders", Order);
