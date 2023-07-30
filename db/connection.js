@@ -3,9 +3,9 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
-dotenv.config();
+// dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = "mongodb://127.0.0.1:27017/my-db-dropwhich"
 
 // This is for Model.findByIdAndUpdate method, specifically so that {new: true} is the default
 mongoose.set('returnOriginal', false);
