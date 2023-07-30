@@ -1,24 +1,24 @@
-import mongoose from "mongoose";
-import chalk from "chalk";
+import mongoose from 'mongoose';
+import chalk from 'chalk';
+import dotenv from 'dotenv';
 
-const MONGODB_URI =
-  process.env.PROD_MONGODB ||"mongodb://localhost:27017/my-app-db";
+// Load environment variables from .env file
+dotenv.config();
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // This is for Model.findByIdAndUpdate method, specifically so that {new: true} is the default
-mongoose.set("returnOriginal", false);
+mongoose.set('returnOriginal', false);
 
 mongoose
-  .connect(MONGODB_URI)
-  .catch((error) =>
-    console.log("Error connecting to MongoDB: ", error.message)
-  );
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((error) => console.log('Error connecting to MongoDB: ', error.message));
 
-mongoose.connection.on("disconnected", () =>
-  console.log(chalk.bold("Disconnected from MongoDB!"))
-);
+mongoose.connection.on('disconnected', () => console.log(chalk.bold('Disconnected from MongoDB!')));
 
-mongoose.connection.on("error", (error) =>
-  console.error(chalk.red(`MongoDB connection error: ${error}`))
-);
+mongoose.connection.on('error', (error) => console.error(chalk.red(`MongoDB connection error: ${error}`)));
 
 export default mongoose.connection;
