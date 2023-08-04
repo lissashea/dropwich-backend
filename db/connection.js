@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 // Load environment variables from .env file
 // dotenv.config();
 
-const MONGODB_URI = "mongodb://127.0.0.1:27017/my-db-dropwhich"
+const MONGODB_URI = "mongodb://127.0.0.1:27017/my-db-dropwhich-backend"
 
 // This is for Model.findByIdAndUpdate method, specifically so that {new: true} is the default
 mongoose.set('returnOriginal', false);
