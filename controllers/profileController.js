@@ -26,32 +26,25 @@ export const getProfileById = async (req, res) => {
 };
 
 export const createProfile = async (req, res) => {
-  const { username, name, street, city, zipCode, phone, allergies } = req.body;
+  const { name, street, city, zipCode, phone, allergies } = req.body;
+  const userId = req.user.userId; // Assuming the JWT payload contains the user ID as "userId"
 
   try {
-    // Find the user based on the username
-    const user = await User.findOne({ username });
-
-    // Check if the user exists
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Create a new profile with the provided data and link it to the user
     const profile = new Profile({
-      username: user.username,
+      username: '', // You can set this to an empty string or any other default value
       name,
       street,
       city,
       zipCode,
       phone,
+      email: '', // You can set this to an empty string or any other default value
       allergies,
     });
 
-    // Save the new profile to the database
-    const newProfile = await profile.save();
+    // Set the user ID in the profile object before saving it
+    profile.user = userId;
 
-    // Return the newly created profile in the response
+    const newProfile = await profile.save();
     res.status(201).json(newProfile);
   } catch (error) {
     res.status(400).json({ message: error.message });
