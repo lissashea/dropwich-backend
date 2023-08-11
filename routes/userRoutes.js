@@ -15,4 +15,10 @@ router.put("/:id", controllers.updateUser);
 // Delete a user
 router.delete("/:id", controllers.deleteUser);
 
+//Get a user
+router.get("/:id", controllers.getUserById)
+
+//Get all user
+router.get("/", controllers.getUsers)
+
 export default router;

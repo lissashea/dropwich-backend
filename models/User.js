@@ -4,18 +4,41 @@ const Schema = mongoose.Schema;
 let User = new Schema({
   username: {
     type: String,
-    required: true,
-    unique: true, // Ensure unique usernames
+    required: false,
+    unique: true,
   },
   password: {
     type: String,
     required: true
   },
   email: {
-    type: String, // Use the String type for the email field
+    type: String,
     required: true,
-    unique: true, // Ensure unique emails
+    unique: true,
   },
+  profile: {
+    name: {
+      type: String,
+    },
+    street: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    zipCode: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    allergies: {
+      type: [String],
+    },
+  }
 });
 
 export default mongoose.model("User", User);
