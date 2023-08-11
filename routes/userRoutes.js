@@ -21,4 +21,6 @@ router.get("/:id", controllers.getUserById)
 //Get all user
 router.get("/", controllers.getUsers)
 
+router.get('/me', controllers.getUserByToken);
+
 export default router;

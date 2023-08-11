@@ -142,6 +142,31 @@ export const getUsers = async (req, res) => {
   }
 };
 
+export const getUserByToken = async (req, res) => {
+  const token = req.headers.authorization && req.headers.authorization.split(" ")[1];
+
+  if (!token) {
+    return res.status(403).json({ message: "No token provided." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const userId = decoded.userId;
+
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+
+  } catch (error) {
+    res.status(500).json({ message: "Failed to authenticate token or other error." });
+  }
+};
+
+
 export const getUserById = async (req, res) => {
   const { id } = req.params;
 
