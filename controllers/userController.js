@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 // Function to generate a JSON Web Token (JWT)
 const generateToken = (userId) => {
   const secretKey = 'your-secret-key'; // Replace this with your secret key for JWT
-  return jwt.sign({ userId }, secretKey, { expiresIn: '1h' });
+  return jwt.sign({ userId }, secretKey, { expiresIn: '365d' });
 };
 
 export const signIn = async (req, res) => {
