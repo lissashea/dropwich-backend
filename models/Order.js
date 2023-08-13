@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 let Order = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User", // Reference to the Profile model for linking orders to profiles
+    ref: "User",
     required: true,
   },
   sandwich: {
