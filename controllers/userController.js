@@ -154,18 +154,17 @@ export const getUserByToken = async (req, res) => {
     const userId = decoded.userId;
 
     const user = await User.findById(userId);
-    
+ 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     res.json(user);
-
   } catch (error) {
+    console.error("Error in getUserByToken: ", error);  // Log the error
     res.status(500).json({ message: "Failed to authenticate token or other error." });
   }
 };
-
 
 export const getUserById = async (req, res) => {
   const { id } = req.params;

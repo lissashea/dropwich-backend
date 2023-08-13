@@ -22,10 +22,15 @@ export const getOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 export const createOrder = async (req, res) => {
   try {
-    const order = new Order(req.body);
+    const userId = req.params.id; // Fetching the user ID from the route parameter
+
+    const order = new Order({
+      ...req.body,
+      user: userId 
+    });
+    
     await order.save();
     res.status(201).json(order);
   } catch (error) {
@@ -33,6 +38,7 @@ export const createOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 export const updateOrder = async (req, res) => {
   try {
